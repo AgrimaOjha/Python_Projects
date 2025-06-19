@@ -5,20 +5,29 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
 
 
 def encrypt(original_text,shift_amount):
-    cipher_text=""
+    cipher_text = ""
     for letter in original_text:
-        shifted_position=alphabet.index(letter)+shift_amount
-        shifted_position%=len(alphabet)
-        cipher_text+=alphabet[shifted_position]
-    print(f"Here is the encoded result:{cipher_text}")
+        if letter.isalpha():
+            lower_letter = letter.lower()
+            shifted_index = (alphabet.index(lower_letter) + shift_amount) % 26
+            new_letter = alphabet[shifted_index]
+            
+            cipher_text += new_letter.upper() if letter.isupper() else new_letter
+        else:
+            cipher_text += letter  
+    print(f"Here is the encoded result: {cipher_text}")
 
 def decrypt(original_text,shift_amount):
-    output_text=""
+    output_text = ""
     for letter in original_text:
-        shifted_position=alphabet.index(letter)-shift_amount
-        shifted_position%=len(alphabet)
-        output_text+=alphabet[shifted_position]
-    print(f"Here is the decoded result:{output_text}")
+        if letter.isalpha():
+            lower_letter = letter.lower()
+            shifted_index = (alphabet.index(lower_letter) - shift_amount) % 26
+            new_letter = alphabet[shifted_index]
+            output_text += new_letter.upper() if letter.isupper() else new_letter
+        else:
+            output_text += letter
+    print(f"Here is the decoded result: {output_text}")
 
 
 
