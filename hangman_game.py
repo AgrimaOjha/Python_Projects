@@ -1,24 +1,106 @@
 import random
 
-word_list = ["agrima", "atharva", "aardvark"] 
-lives = 6
-chosen_word = random.choice(word_list)
+word_list = [
+    "inception", "avatar", "titanic", "jumanji", "gladiator", "batman", "superman",
+    "frozen", "up", "coco", "dangal", "raazi", "rocky", "joker", "shazam", "interstellar",
+    "gravity", "tenet", "lucy", "fury", "moana", "encanto", "zootopia", "cars", "ratatouille",
+    "thor", "avengers", "panther", "frozen", "aladdin", "elemental", "barbie", "oppenheimer",
+    "hera", "rrr", "pathaan", "baahubali", "drishyam", "chakde", "sanju", "dhoom", "ghajini"
+]
 
+hangman_stages = [
+    """
+     _______
+    |/      |
+    |      (_)
+    |      \\|/
+    |       |
+    |      / \\
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      (_)
+    |      \\|/
+    |       |
+    |      / 
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      (_)
+    |      \\|/
+    |       |
+    |      
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      (_)
+    |      \\|
+    |       |
+    |      
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      (_)
+    |       |
+    |       |
+    |      
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      (_)
+    |      
+    |       
+    |      
+    |
+    |___
+    """,
+    """
+     _______
+    |/      |
+    |      
+    |      
+    |       
+    |      
+    |
+    |___
+    """
+]
+
+
+
+chosen_word = random.choice(word_list)
+lives = len(chosen_word)
 
 placeholder = ""
 word_length = len(chosen_word)
 for position in range(word_length):
     placeholder += "_"
-print(placeholder)
+print("Word to guess:",placeholder)
 
 game_over = False
 correct_letters = []
 
 while not game_over:
+    print("*****************************",lives,"/",word_length,"LIVES LEFT*****************************")
     guess = input("What letter do you guess?: ").lower()
 
-    if guess not in correct_letters:
-        correct_letters.append(guess)
+    if guess in correct_letters:
+        print("You've already guessed this letter...")
 
     display = ""
     for letter in chosen_word:
@@ -35,8 +117,9 @@ while not game_over:
         lives -= 1
         if lives == 0:
             game_over = True
-            print("You lose...")
+            print("*****************************YOU LOSE*****************************")
 
     if "_" not in display:
         game_over = True
-        print("You win!")
+        print("*****************************YOU WIN*****************************")
+    print(hangman_stages[lives])
