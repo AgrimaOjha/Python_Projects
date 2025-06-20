@@ -89,7 +89,7 @@ lives = 6
 placeholder = ""
 word_length = len(chosen_word)
 for position in range(word_length):
-    placeholder += "_"
+    placeholder += "_ "
 print("Word to guess:",placeholder)
 
 game_over = False
