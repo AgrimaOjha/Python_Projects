@@ -84,7 +84,7 @@ hangman_stages = [
 
 
 chosen_word = random.choice(word_list)
-lives = len(chosen_word)
+lives = 6
 
 placeholder = ""
 word_length = len(chosen_word)
@@ -96,7 +96,7 @@ game_over = False
 correct_letters = []
 
 while not game_over:
-    print("*****************************",lives,"/",word_length,"LIVES LEFT*****************************")
+    print(f"*****************************{lives}/6 LIVES LEFT*****************************")
     guess = input("What letter do you guess?: ").lower()
 
     if guess in correct_letters:
