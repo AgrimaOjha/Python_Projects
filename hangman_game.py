@@ -81,8 +81,6 @@ hangman_stages = [
     """
 ]
 
-
-
 chosen_word = random.choice(word_list)
 lives = 6
 
@@ -90,7 +88,7 @@ placeholder = ""
 word_length = len(chosen_word)
 for position in range(word_length):
     placeholder += "_ "
-print("Word to guess:",placeholder)
+print("Word to guess:", placeholder)
 
 game_over = False
 correct_letters = []
@@ -101,16 +99,17 @@ while not game_over:
 
     if guess in correct_letters:
         print("You've already guessed this letter...")
+        continue  
+
+    correct_letters.append(guess)
 
     display = ""
     for letter in chosen_word:
-        if letter==guess:
-            display+=letter
-            correct_letters.append(guess)
-        elif letter in correct_letters:
-            display += letter
+        if letter in correct_letters:
+            display += letter + " "
         else:
-            display += "_"
+            display += "_ "
+
     print(display)
 
     if guess not in chosen_word:
@@ -118,8 +117,10 @@ while not game_over:
         if lives == 0:
             game_over = True
             print("*****************************YOU LOSE*****************************")
+            print(f"The correct word was: {chosen_word}")
 
-    if "_" not in display:
+    if "_ " not in display:
         game_over = True
         print("*****************************YOU WIN*****************************")
+
     print(hangman_stages[lives])
