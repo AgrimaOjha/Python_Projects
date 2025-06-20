@@ -8,7 +8,6 @@ print("Welcome to the PyPassword Generator!")
 letters_password = int(input("How many letters would you like in your password?\n")) 
 symbols_password= int(input(f"How many symbols would you like?\n"))
 numbers_password = int(input(f"How many numbers would you like?\n"))
-
 password_list = []
 
 for char in range(1, letters_password + 1):
